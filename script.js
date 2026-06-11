@@ -1,4 +1,4 @@
-const API_KEY = "10a7732fb97a4caa91a6c1a72d18ef51";
+const API_KEY = "8ab76e34946b46df4c0fbf51ea3cd49e";
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -37,14 +37,14 @@ document.addEventListener("DOMContentLoaded", () => {
     grid.innerHTML = "";
     try {
       const res = await fetch(
-        `https://newsapi.org/v2/top-headlines?category=${category}&language=en&pageSize=20&apiKey=${API_KEY}`
+        `https://gnews.io/api/v4/top-headlines?category=${category}&lang=en&max=20&apikey=${API_KEY}`
       );
       const data = await res.json();
-      if (data.status === "ok" && data.articles.length > 0) {
+      if (data.articles && data.articles.length > 0) {
         status.textContent = "";
         renderNews(data.articles);
       } else {
-        status.textContent = data.message || "No news found.";
+        status.textContent = "No news found.";
       }
     } catch (err) {
       status.textContent = "Could not load news!";
@@ -57,14 +57,14 @@ document.addEventListener("DOMContentLoaded", () => {
     catBtns.forEach(b => b.classList.remove("active"));
     try {
       const res = await fetch(
-        `https://newsapi.org/v2/everything?q=${encodeURIComponent(query)}&language=en&pageSize=20&sortBy=publishedAt&apiKey=${API_KEY}`
+        `https://gnews.io/api/v4/search?q=${encodeURIComponent(query)}&lang=en&max=20&sortby=publishedAt&apikey=${API_KEY}`
       );
       const data = await res.json();
-      if (data.status === "ok" && data.articles.length > 0) {
+      if (data.articles && data.articles.length > 0) {
         status.textContent = `Results for "${query}"`;
         renderNews(data.articles);
       } else {
-        status.textContent = data.message || "No results found.";
+        status.textContent = "No results found.";
       }
     } catch (err) {
       status.textContent = "Something went wrong.";
@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function renderNews(articles) {
     grid.innerHTML = "";
     articles
-      .filter(a => a.title && a.title !== "[Removed]")
+      .filter(a => a.title)
       .forEach(article => {
         const date = new Date(article.publishedAt).toLocaleDateString("en-US", {
           month: "short", day: "numeric", year: "numeric"
@@ -85,8 +85,8 @@ document.addEventListener("DOMContentLoaded", () => {
         card.target = "_blank";
         card.rel = "noopener noreferrer";
         card.innerHTML = `
-          ${article.urlToImage
-            ? `<img src="${article.urlToImage}" alt="${article.title}" />`
+          ${article.image
+            ? `<img src="${article.image}" alt="${article.title}" />`
             : `<div class="no-image">📰</div>`
           }
           <div class="news-card-body">

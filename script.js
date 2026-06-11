@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
     grid.innerHTML = "";
     try {
       const res = await fetch(
-        `https://gnews.io/api/v4/top-headlines?category=${category}&lang=en&max=20&apikey=${API_KEY}`
+        `https://corsproxy.io/?https://gnews.io/api/v4/top-headlines?category=${category}&lang=en&max=20&apikey=${API_KEY}`
       );
       const data = await res.json();
       if (data.articles && data.articles.length > 0) {
@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
     catBtns.forEach(b => b.classList.remove("active"));
     try {
       const res = await fetch(
-        `https://gnews.io/api/v4/search?q=${encodeURIComponent(query)}&lang=en&max=20&sortby=publishedAt&apikey=${API_KEY}`
+        `https://corsproxy.io/?https://gnews.io/api/v4/search?q=${encodeURIComponent(query)}&lang=en&max=20&sortby=publishedAt&apikey=${API_KEY}`
       );
       const data = await res.json();
       if (data.articles && data.articles.length > 0) {

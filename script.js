@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const status = document.getElementById("status");
   const catBtns = document.querySelectorAll(".cat-btn");
 
-  fetchNews("general");
+  fetchNews("breaking-news");
 
   searchBtn.addEventListener("click", () => {
     const query = searchInput.value.trim();

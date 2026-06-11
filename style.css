@@ -1,0 +1,241 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #0e0e1a;
+  color: #fff;
+  font-family: 'Segoe UI', sans-serif;
+  min-height: 100vh;
+}
+
+header {
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+  border-bottom: 3px solid #e040fb;
+  padding: 20px 16px 0;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+header h1 {
+  font-size: clamp(20px, 5vw, 32px);
+  font-weight: 900;
+  margin-bottom: 14px;
+}
+
+header h1 span {
+  background: linear-gradient(90deg, #e040fb, #7c4dff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.search-bar {
+  display: flex;
+  gap: 8px;
+  max-width: 550px;
+  margin: 0 auto 14px;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 2px solid #333;
+  background: #1a1a2e;
+  color: #fff;
+  font-size: 15px;
+  outline: none;
+  transition: border 0.2s;
+  min-width: 0;
+}
+
+.search-bar input:focus {
+  border-color: #e040fb;
+}
+
+.search-bar button {
+  padding: 12px 20px;
+  background: linear-gradient(135deg, #e040fb, #7c4dff);
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.2s;
+}
+
+.search-bar button:hover {
+  opacity: 0.85;
+}
+
+.categories {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 0 4px 14px;
+  scrollbar-width: none;
+  justify-content: center;
+}
+
+.categories::-webkit-scrollbar {
+  display: none;
+}
+
+.cat-btn {
+  padding: 7px 16px;
+  border-radius: 20px;
+  border: 1.5px solid #333;
+  background: transparent;
+  color: #aaa;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+
+.cat-btn.active {
+  background: linear-gradient(135deg, #e040fb, #7c4dff);
+  border-color: transparent;
+  color: #fff;
+}
+
+.cat-btn:hover {
+  border-color: #e040fb;
+  color: #e040fb;
+}
+
+main {
+  max-width: 1200px;
+  margin: 24px auto;
+  padding: 0 12px;
+}
+
+#status {
+  text-align: center;
+  font-size: 14px;
+  color: #aaa;
+  margin-bottom: 20px;
+  min-height: 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.news-card {
+  background: #1a1a2e;
+  border: 1px solid #2a2a3e;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+}
+
+.news-card:hover {
+  transform: translateY(-4px);
+  border-color: #e040fb;
+  box-shadow: 0 8px 24px rgba(224,64,251,0.2);
+}
+
+.news-card:active {
+  transform: scale(0.98);
+}
+
+.news-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.no-image {
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(135deg, #1a1a2e, #2a2a3e);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+}
+
+.news-card-body {
+  padding: 16px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.news-source {
+  display: inline-block;
+  background: linear-gradient(135deg, #e040fb, #7c4dff);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  width: fit-content;
+}
+
+.news-title {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.5;
+  color: #f0f0f0;
+}
+
+.news-desc {
+  font-size: 13px;
+  color: #888;
+  line-height: 1.6;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.news-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 8px;
+  border-top: 1px solid #2a2a3e;
+}
+
+.news-date {
+  font-size: 11px;
+  color: #666;
+}
+
+.read-more {
+  font-size: 12px;
+  color: #e040fb;
+  font-weight: 700;
+}
+
+@media (min-width: 600px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
